@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class UserRequest {
+public class UserRequestDTO {
     @NotBlank(message = "must enter fullName")
     private String fullName;
 

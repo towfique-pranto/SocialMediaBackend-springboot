@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.example.SocialMedia.dto.request.PostRequest;
+import com.example.SocialMedia.dto.request.PostRequestDTO;
 import com.example.SocialMedia.dto.response.PostResponseDTO;
 import com.example.SocialMedia.entity.PostEntity;
 import com.example.SocialMedia.repository.PostRepo;
@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class PostService {
     private final PostRepo postRepository;
 
-    public PostResponseDTO createPost(PostRequest request){
+    public PostResponseDTO createPost(PostRequestDTO request){
         PostEntity post = PostEntity.builder()
                 .authorName(request.getAuthorName())
                 .content(request.getContent())

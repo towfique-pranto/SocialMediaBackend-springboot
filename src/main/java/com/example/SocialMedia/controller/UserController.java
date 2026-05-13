@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.SocialMedia.dto.request.UserRequest;
+import com.example.SocialMedia.dto.request.UserRequestDTO;
 import com.example.SocialMedia.dto.response.UserResponseDTO;
 import com.example.SocialMedia.service.UserService;
 
@@ -27,7 +27,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity<UserResponseDTO> createUser(@Valid @RequestBody UserRequest request){
+    public ResponseEntity<UserResponseDTO> createUser(@Valid @RequestBody UserRequestDTO request){
         UserResponseDTO response = userService.createUser(request);
         return ResponseEntity.ok(response);
     }
@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserResponseDTO> updateBio(@PathVariable Long id, @RequestBody UserRequest request) {
+    public ResponseEntity<UserResponseDTO> updateBio(@PathVariable Long id, @RequestBody UserRequestDTO request) {
         return ResponseEntity.ok(userService.updateBio(id, request));
     }
 }

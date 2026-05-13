@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.SocialMedia.dto.request.PostRequest;
+import com.example.SocialMedia.dto.request.PostRequestDTO;
 import com.example.SocialMedia.dto.response.PostResponseDTO;
 
 import jakarta.validation.Valid;
@@ -26,7 +26,7 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping
-    public ResponseEntity<PostResponseDTO> createPost(@Valid @RequestBody PostRequest request){
+    public ResponseEntity<PostResponseDTO> createPost(@Valid @RequestBody PostRequestDTO request){
         PostResponseDTO response = postService.createPost(request);
         return ResponseEntity.ok(response);
     }

@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class PostRequest {
+public class PostRequestDTO {
     @NotBlank(message = "Author can't be empty")
     private String authorName;
 

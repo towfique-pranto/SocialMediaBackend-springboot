@@ -2,7 +2,7 @@ package com.example.SocialMedia.service;
 
 import org.springframework.stereotype.Service;
 
-import com.example.SocialMedia.dto.request.UserRequest;
+import com.example.SocialMedia.dto.request.UserRequestDTO;
 import com.example.SocialMedia.dto.response.UserResponseDTO;
 import com.example.SocialMedia.entity.UserEntity;
 import com.example.SocialMedia.repository.UserRepo;
@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
     private final UserRepo userRepository;
 
-    public UserResponseDTO createUser(UserRequest request){
+    public UserResponseDTO createUser(UserRequestDTO request){
         if(userRepository.existsByEmail(request.getEmail())){
             throw new RuntimeException("Email already exists: " + request.getEmail());
         }
@@ -34,7 +34,7 @@ public class UserService {
         return mapToResponseDTO(user);
     }
 
-    public UserResponseDTO updateBio(Long id, UserRequest request){
+    public UserResponseDTO updateBio(Long id, UserRequestDTO request){
         UserEntity user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
 
