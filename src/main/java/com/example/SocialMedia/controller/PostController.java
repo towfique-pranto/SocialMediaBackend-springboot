@@ -31,13 +31,11 @@ public class PostController {
         return ResponseEntity.ok(response);
     }
 
-    // get all post
     @GetMapping
     public ResponseEntity<List<PostResponseDTO>> getAllPost() {
         return ResponseEntity.ok(postService.getAllActivePosts());
     }
 
-    // delete
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePost(@PathVariable Long id) {
         postService.deletePost(id);

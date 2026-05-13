@@ -14,8 +14,6 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
     private final UserRepo userRepository;
 
-
-    // create user
     public UserResponseDTO createUser(UserRequest request){
         if(userRepository.existsByEmail(request.getEmail())){
             throw new RuntimeException("Email already exists: " + request.getEmail());
@@ -30,14 +28,12 @@ public class UserService {
         return mapToResponseDTO(savedUser);
     }
 
-    // get user
     public UserResponseDTO getUserById(Long id){
         UserEntity user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
         return mapToResponseDTO(user);
     }
 
-    // update bio
     public UserResponseDTO updateBio(Long id, UserRequest request){
         UserEntity user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
@@ -47,7 +43,6 @@ public class UserService {
         return mapToResponseDTO(updatedUser);
     }
 
-    // mapper
     private UserResponseDTO mapToResponseDTO(UserEntity user){
         return UserResponseDTO.builder()
                 .id(user.getId())

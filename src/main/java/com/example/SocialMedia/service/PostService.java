@@ -18,7 +18,6 @@ import lombok.RequiredArgsConstructor;
 public class PostService {
     private final PostRepo postRepository;
 
-    // create post
     public PostResponseDTO createPost(PostRequest request){
         PostEntity post = PostEntity.builder()
                 .authorName(request.getAuthorName())
@@ -30,7 +29,6 @@ public class PostService {
         return mapToResponseDTO(savedPost);
     }
 
-    // all post
     public List<PostResponseDTO> getAllActivePosts(){
         List<PostEntity> posts = postRepository.findAllByActiveTrue();
         return posts.stream()
@@ -38,7 +36,6 @@ public class PostService {
                 .toList();
     }
 
-    // delete post
     public void deletePost(Long id){
         PostEntity post = postRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Post not found with id: " + id));
@@ -47,7 +44,6 @@ public class PostService {
         postRepository.save(post);
     }
 
-    // mapper
     private PostResponseDTO mapToResponseDTO(PostEntity post){
         return PostResponseDTO.builder()
                 .id(post.getId())
